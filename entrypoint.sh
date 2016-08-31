@@ -10,7 +10,7 @@ do
       ;;
       "2") echo "INFO takes the value and converts it to string."
       ;;
-      "3") echo "WARN varible not in use."
+      "3") echo "WARN variable not in use."
       ;;
       "4") echo "DEBUG first loop completed."
       ;;
