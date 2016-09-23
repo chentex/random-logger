@@ -2,6 +2,9 @@
 
 Docker image for a random log generator, based on Alpine Linux.
 
+[![](https://images.microbadger.com/badges/version/chentex/random-logger.svg)](https://microbadger.com/images/chentex/random-logger "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/chentex/random-logger.svg)](https://microbadger.com/images/chentex/random-logger "Get your own image badge on microbadger.com")
+
 ## What is this?
 This image will execute a container which will generate four random log messages:
 * `ERROR something happened in this execution.`
