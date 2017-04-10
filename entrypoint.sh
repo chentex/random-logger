@@ -1,10 +1,10 @@
 #!/bin/sh
 while [ 1 ]
 do
-   waitTime=$(shuf -i 1-3 -n 1)
+   waitTime=$(shuf -i 1-5 -n 1)
    sleep $waitTime &
    wait $!
-   instruction=$(shuf -i 1-4 -n 1)
+   instruction=$(shuf -i 0-4 -n 1)
    d=`date`
    case "$instruction" in
       "1") echo "ERROR ($d) something happened in this execution."
