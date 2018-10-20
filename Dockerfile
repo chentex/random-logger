@@ -1,3 +1,3 @@
-FROM alpine:3.6
+FROM alpine:3.8
 COPY ./entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
