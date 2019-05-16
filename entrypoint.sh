@@ -1,19 +1,18 @@
 #!/bin/sh
 while [ 1 ]
 do
-   waitTime=$(shuf -i 1-5 -n 1)
-   sleep $waitTime &
-   wait $!
-   instruction=$(shuf -i 0-4 -n 1)
-   d=`date -Iseconds`
-   case "$instruction" in
-      "1") echo "$d ERROR something happened in this execution."
+   WAIT=$(shuf -i $1-$2 -n 1)
+   sleep $(echo "scale=4; $WAIT/1000" | bc)
+   I=$(shuf -i 1-4 -n 1)
+   D=`date -Iseconds`
+   case "$I" in
+      "1") echo "$D ERROR An error is usually an exception that has been caught and not handled."
       ;;
-      "2") echo "$d INFO takes the value and converts it to string."
+      "2") echo "$D INFO This is less important than debug log and is often used to provide context in the current task."
       ;;
-      "3") echo "$d WARN variable not in use."
+      "3") echo "$D WARN A warning that should be ignored is usually at this level and should be actionable."
       ;;
-      "4") echo "$d DEBUG first loop completed."
+      "4") echo "$D DEBUG This is a debug log that shows a log that can be ignored."
       ;;
    esac
 done
