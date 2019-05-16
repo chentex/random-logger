@@ -34,7 +34,7 @@ To use this image you must do as follows:
 docker pull chentex/random-logger:latest
 
 # use different intervals to print logs every random(100, 400) milliseconds
-docker pull chentex/random-logger:latest 100 400
+docker run chentex/random-logger:latest 100 400
 
 # to run the image just execute
 docker run -d chentex/random-logger:latest
