@@ -1,5 +1,12 @@
 #!/bin/sh
-while [ 1 ]
+n=-1
+c=0
+if [ -n "$3" ]
+then
+   n=$3
+fi
+
+while [ $n -ne $c ]
 do
    WAIT=$(shuf -i $1-$2 -n 1)
    sleep $(echo "scale=4; $WAIT/1000" | bc)
@@ -15,4 +22,5 @@ do
       "4") echo "$D DEBUG This is a debug log that shows a log that can be ignored."
       ;;
    esac
+   c=$(( c+1 ))
 done

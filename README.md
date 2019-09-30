@@ -36,6 +36,10 @@ docker pull chentex/random-logger:latest
 # use different intervals to print logs every random(100, 400) milliseconds
 docker run chentex/random-logger:latest 100 400
 
+# use the third parameter so limit the number of loglines (after generating the lines the container will stop).
+# if not set it runs infinite
+docker run chentex/random-logger:latest 100 400 100
+
 # to run the image just execute
 docker run -d chentex/random-logger:latest
 ```
@@ -80,6 +84,7 @@ docker build -f Dockerfile -t yourbase/yourname:version .
 ```
 
 ---
+
 For more on docker build reference to the [Documentation](https://docs.docker.com/engine/reference/commandline/build/)
 
 You can get the source from the image in the [Repository](https://github.com/chentex/random-logger)
