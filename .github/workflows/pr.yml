@@ -14,18 +14,18 @@ jobs:
         id: build
         run: |
           VERSION=${{ github.sha }}
-          IMAGE_NAME="chentex/random-logger"
+          IMAGE_NAME="docker.io/chentex/random-logger"
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=image::${IMAGE_NAME}
           docker build --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
           --build-arg BUILD_DATE="$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
           --build-arg VERSION="$VERSION" \
-          -f Dockerfile -t "$IMAGE_NAME":v"$VERSION" .
+          -f Dockerfile -t "$IMAGE_NAME":"$VERSION" .
 
       - name: Scan for vulnerabilities
-        uses: aquasecurity/trivy-action@0.0.8
+        uses: aquasecurity/trivy-action@master
         with:
-          image-ref: '${{ steps.build.outputs.image }:${{ steps.build.outputs.version }}'
+          image-ref: '${{ steps.build.outputs.image }}:${{ steps.build.outputs.version }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
