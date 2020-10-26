@@ -1,0 +1,14 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  build:
+    name: Build and check for vulnerabilities
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+ 
