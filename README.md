@@ -3,6 +3,7 @@
 Docker image for a random log generator, based on Alpine Linux.
 
 ![release](https://github.com/chentex/random-logger/workflows/release/badge.svg)
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/chentex/random-logger)
 
 ## What is this?
 
