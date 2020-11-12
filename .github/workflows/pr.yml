@@ -14,7 +14,7 @@ jobs:
         id: build
         run: |
           VERSION=${{ github.sha }}
-          IMAGE_NAME="docker.io/chentex/random-logger"
+          IMAGE_NAME="docker.io/jgrumboes/random-logger"
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=image::${IMAGE_NAME}
           docker build -f Dockerfile -t "$IMAGE_NAME":"$VERSION" .
