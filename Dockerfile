@@ -2,4 +2,4 @@ FROM alpine:3.12
 RUN apk add --no-cache bc
 COPY ./entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
-CMD [ "100", "2000" ]
+CMD [ "100", "1500" ]
