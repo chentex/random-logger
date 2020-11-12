@@ -7,8 +7,20 @@ jobs:
     name: Build and check for vulnerabilities
     runs-on: ubuntu-18.04
     steps:
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
         
       - name: Build image
         id: build
@@ -19,6 +31,12 @@ jobs:
           echo ::set-output name=image::${IMAGE_NAME}
           docker build -f Dockerfile -t "$IMAGE_NAME":"$VERSION" .
 
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+
       - name: Scan for vulnerabilities
         uses: aquasecurity/trivy-action@master
         with:
@@ -27,3 +45,9 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
+
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
