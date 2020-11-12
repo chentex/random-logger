@@ -2,8 +2,8 @@
 
 Docker image for a random log generator, based on Alpine Linux.
 
-![release](https://github.com/chentex/random-logger/workflows/release/badge.svg)
-![Docker Image Version (latest by date)](https://img.shields.io/docker/v/chentex/random-logger)
+![release](https://github.com/jgrumboe/random-logger/workflows/release/badge.svg)
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/jgrumboe/random-logger)
 
 ## What is this?
 
@@ -31,17 +31,17 @@ To use this image you must do as follows:
 
 ```bash
 # you can use tags latest
-docker pull chentex/random-logger:latest
+docker pull jgrumboe/random-logger:latest
 
 # use different intervals to print logs every random(100, 400) milliseconds
-docker run chentex/random-logger:latest 100 400
+docker run jgrumboe/random-logger:latest 100 400
 
 # use the third parameter so limit the number of loglines (after generating the lines the container will stop).
 # if not set it runs infinite
-docker run chentex/random-logger:latest 100 400 100
+docker run jgrumboe/random-logger:latest 100 400 100
 
 # to run the image just execute
-docker run -d chentex/random-logger:latest
+docker run -d jgrumboe/random-logger:latest
 ```
 
 You will have now a docker container running and generating log messages, locate it running:
@@ -58,7 +58,7 @@ docker logs <- container-id ->
 
 ## How do I build this images?
 
-First things first, you can find these docker images in `chentex/random-logger`
+First things first, you can find these docker images in `jgrumboe/random-logger`
 but you can also build a specific version on your own, you only need:
 
 * docker
@@ -66,7 +66,7 @@ but you can also build a specific version on your own, you only need:
 
 Clone this repo
 
-`git clone https://github.com/chentex/random-logger.git`
+`git clone https://github.com/jgrumboe/random-logger.git`
 
 Go to the folder in your terminal and type this:
 
@@ -87,4 +87,4 @@ docker build -f Dockerfile -t yourbase/yourname:version .
 
 For more on docker build reference to the [Documentation](https://docs.docker.com/engine/reference/commandline/build/)
 
-You can get the source from the image in the [Repository](https://github.com/chentex/random-logger)
+You can get the source from the image in the [Repository](https://github.com/jgrumboe/random-logger)
