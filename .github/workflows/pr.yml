@@ -4,7 +4,6 @@ on:
   pull_request:
 jobs:
   build:
-    name: Build and check for vulnerabilities
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
