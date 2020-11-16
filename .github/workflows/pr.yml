@@ -7,10 +7,9 @@ jobs:
     name: Build and check for vulnerabilities
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - uses: toko-bifrost/ms-teams-deploy-card@master #  or "./" if in a local set-up
+      - uses: toko-bifrost/ms-teams-deploy-card@master
         if: always()
         with:
           github-token: ${{ github.token }}
