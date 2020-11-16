@@ -10,8 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Microsoft Teams Notification
-        uses: toko-bifrost/ms-teams-deploy-card@master #  or "./" if in a local set-up
+      - uses: toko-bifrost/ms-teams-deploy-card@master #  or "./" if in a local set-up
         if: always()
         with:
           github-token: ${{ github.token }}
