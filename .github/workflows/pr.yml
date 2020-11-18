@@ -3,18 +3,22 @@ name: PR
 on:
   pull_request:
 jobs:
-  build:
-    name: Build and check for vulnerabilities
+  Build-and-check-for-vulnerabilities:
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+
+      - uses: toko-bifrost/ms-teams-deploy-card@master
+        if: always()
+        with:
+          github-token: ${{ github.token }}
+          webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK }}
         
       - name: Build image
         id: build
         run: |
           VERSION=${{ github.sha }}
-          IMAGE_NAME="docker.io/jgrumboes/random-logger"
+          IMAGE_NAME="docker.io/jgrumboe/random-logger"
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=image::${IMAGE_NAME}
           docker build -f Dockerfile -t "$IMAGE_NAME":"$VERSION" .
