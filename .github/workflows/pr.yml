@@ -14,19 +14,14 @@ jobs:
           github-token: ${{ github.token }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK }}
 
-      - name: Start GitHub Deployments
-        uses: bobheadxi/deployments@v0.4.3
+      - id: set_state_in_progress
+        name: Set deployment status to [in_progress]
+        uses: rsotnychenko/deployment-status-update@0.2.0
         with:
-          # GitHub token
-          token: ${{ github.token }}
-          # One of 'start' and 'finish'
-          step: start
-          # Description to set in status
-          desc: Description of deployment ${{ github.run_id }}
-          # The name of the deployment environment for Github. (Required for `start` and `deactivate-env` only)
-          env: Prod
-          # The deployment id to update (if specified during `start`, the deployment will be updated instead of a new one created)
-          deployment_id: ${{ github.run_id }}
+          run_id: ${{ github.run_id }}
+          status: in_progress
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build image
         id: build
@@ -46,16 +41,12 @@ jobs:
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
 
-      - name: Finish GitHub Deployments
-        uses: bobheadxi/deployments@v0.4.3
+      - id: set_state_final
+        if: always()
+        name: Set deployment status
+        uses: rsotnychenko/deployment-status-update@0.2.0
         with:
-          # GitHub token
-          token: ${{ github.token }}
-          # One of 'start' and 'finish'
-          step: finish
-          # Description to set in status
-          desc: Description of deployment ${{ github.run_id }}
-          # The deployment id to update (if specified during `start`, the deployment will be updated instead of a new one created)
-          deployment_id: ${{ github.run_id }}
-          # The deployment status. (For `finish` only):
           status: ${{ job.status }}
+          run_id: ${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
