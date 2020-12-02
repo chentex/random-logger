@@ -23,6 +23,8 @@ jobs:
           step: start
           # Description to set in status
           desc: Description of deployment ${{ github.run_id }}
+          # The name of the deployment environment for Github. (Required for `start` and `deactivate-env` only)
+          env: Prod
           # The deployment id to update (if specified during `start`, the deployment will be updated instead of a new one created)
           deployment_id: ${{ github.run_id }}
 
