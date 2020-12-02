@@ -8,7 +8,7 @@ jobs:
         with:
           state: in_progress
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
       - run: |
           echo 'Performing the deployment...'
           sleep 10
@@ -17,4 +17,4 @@ jobs:
         with:
           state: ${{ success() }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
