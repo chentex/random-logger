@@ -1,5 +1,5 @@
 name: Deploy
-on: deploy
+on: deployment
 jobs:
   deploy:
     runs-on: ubuntu-latest
