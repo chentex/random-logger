@@ -1,26 +1,4 @@
 name: PR
-
-
-on: deploy
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: avakar/set-deployment-status@v1
-        with:
-          state: in_progress
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
-        echo 'Performing the deployment...'
-        sleep 10
-      - uses: avakar/set-deployment-status@v1
-        if: always()
-        with:
-          state: ${{ success() }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 on: pull_request
 jobs:
   Build-and-check-for-vulnerabilities:
