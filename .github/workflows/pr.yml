@@ -34,4 +34,4 @@ jobs:
         with:
           auto_merge: false
         env:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
