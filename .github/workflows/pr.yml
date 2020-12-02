@@ -13,7 +13,19 @@ jobs:
         with:
           github-token: ${{ github.token }}
           webhook-uri: ${{ secrets.MSTEAMS_WEBHOOK }}
-        
+
+      - name: Start GitHub Deployments
+        uses: bobheadxi/deployments@v0.4.3
+        with:
+          # GitHub token
+          token: ${{ github.token }}
+          # One of 'start' and 'finish'
+          step: start
+          # Description to set in status
+          desc: Description of deployment ${{ github.run_id }}
+          # The deployment id to update (if specified during `start`, the deployment will be updated instead of a new one created)
+          deployment_id: ${{ github.run_id }}
+
       - name: Build image
         id: build
         run: |
@@ -31,3 +43,17 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
+
+      - name: Finish GitHub Deployments
+        uses: bobheadxi/deployments@v0.4.3
+        with:
+          # GitHub token
+          token: ${{ github.token }}
+          # One of 'start' and 'finish'
+          step: finish
+          # Description to set in status
+          desc: Description of deployment ${{ github.run_id }}
+          # The deployment id to update (if specified during `start`, the deployment will be updated instead of a new one created)
+          deployment_id: ${{ github.run_id }}
+          # The deployment status. (For `finish` only):
+          status: ${{ job.status }}
